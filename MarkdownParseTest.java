@@ -11,7 +11,7 @@ public class MarkdownParseTest {
     public void addition() {
         assertEquals(2, 1 + 1);
     }
-/*
+
     @Test
     public void testfiles() throws IOException {
         ArrayList<String> testfile1 = new ArrayList<>();
@@ -52,5 +52,5 @@ public class MarkdownParseTest {
     //     ArrayList<String> Infin
     // }
 
-    */
+    
 }
