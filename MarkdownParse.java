@@ -4,35 +4,17 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import org.commonmark.node.*;
+import org.commonmark.parser.*;
+import org.commonmark.renderer.html.*;
 
 public class MarkdownParse {
     public static ArrayList<String> getLinks(String markdown) {
-        ArrayList<String> toReturn = new ArrayList<>();
-        // find the next [, then find the ], then find the (, then take up to
-        // the next )
-        int currentIndex = 0;
-        while (currentIndex < markdown.length()) {
-            int nextOpenBracket = markdown.indexOf("[", currentIndex);
-            if(nextOpenBracket<0){break;}
-            int nextCloseBracket = markdown.indexOf("]", nextOpenBracket);
-            if(nextCloseBracket<0){break;}
-            int openParen = markdown.indexOf("(", nextCloseBracket);
-            if(openParen<0){break;}
-            int closeParen = markdown.indexOf(")", openParen);
-            if (currentIndex < 0 || nextCloseBracket < 0 || nextOpenBracket < 0 || openParen < 0 || closeParen < 0) {
-                break;
-            }
-            if (openParen == nextCloseBracket + 1) {
-                if (nextOpenBracket != 0 && markdown.charAt(nextOpenBracket - 1) != '!') {
-                    toReturn.add(markdown.substring(openParen + 1, closeParen));
-                } else if (markdown.charAt(currentIndex) == '[')
-                    toReturn.add(markdown.substring(openParen + 1, closeParen));
-            }
-            currentIndex = closeParen + 1;
-
-        }
-
-        return toReturn;
+        Parser parser = Parser.builder().build();
+        Node node = parser.parse("Example\n=======\n\nSome more text\n[Link](www.hi.com)\n[Link2](www.hello.com)");
+        TryCommonMark.LinkCountVisitor visitor = new TryCommonMark.LinkCountVisitor();
+        node.accept(visitor);
+        return visitor.toRet;
     }
 
     public static void main(String[] args) throws IOException {

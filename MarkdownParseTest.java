@@ -17,16 +17,16 @@ public class MarkdownParseTest {
         ArrayList<String> testfile1 = new ArrayList<>();
         testfile1.add("https://something.com");
         testfile1.add("some-page.html");
-        String testfilemd = MarkdownParse.converter("test-file.md");
-        assertEquals(testfile1, MarkdownParse.getLinks(testfilemd));
+        String testfilemd = MarkdownParseOld.converter("test-file.md");
+        assertEquals(testfile1, MarkdownParseOld.getLinks(testfilemd));
     }
 
     @Test
     public void testCharacterAfter() throws IOException {
         ArrayList<String> CharacterAfter = new ArrayList<>();
         CharacterAfter.add("google.com");
-        String CharacterAfterTest = MarkdownParse.converter("CharacterAfter.md");
-        assertEquals(CharacterAfter, MarkdownParse.getLinks(CharacterAfterTest));
+        String CharacterAfterTest = MarkdownParseOld.converter("CharacterAfter.md");
+        assertEquals(CharacterAfter, MarkdownParseOld.getLinks(CharacterAfterTest));
     }
 
     @Test
@@ -34,8 +34,8 @@ public class MarkdownParseTest {
         ArrayList<String> InBetween = new ArrayList<>();
         InBetween.add("hi.com");
         InBetween.add("hi.com");
-        String InBetweenTest = MarkdownParse.converter("InBetween.md");
-        assertEquals(InBetween, MarkdownParse.getLinks(InBetweenTest));
+        String InBetweenTest = MarkdownParseOld.converter("InBetween.md");
+        assertEquals(InBetween, MarkdownParseOld.getLinks(InBetweenTest));
     }
 
     @Test
@@ -43,8 +43,8 @@ public class MarkdownParseTest {
         ArrayList<String> Image = new ArrayList<>();
         Image.add("link.com");
         Image.add("thiswebsite.com");
-        String ImageTest = MarkdownParse.converter("Image.md");
-        assertEquals(Image, MarkdownParse.getLinks(ImageTest));
+        String ImageTest = MarkdownParseOld.converter("Image.md");
+        assertEquals(Image, MarkdownParseOld.getLinks(ImageTest));
     }
 
     // @Test
